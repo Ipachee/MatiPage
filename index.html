@@ -66,6 +66,8 @@
   .btn-outline-dark:hover{background:var(--navy); color:var(--off);}
   .btn[aria-disabled="true"]{opacity:.4; cursor:not-allowed; pointer-events:none;}
   .btn-row{display:flex; flex-wrap:wrap; gap:14px;}
+  .btn-col{display:flex; flex-direction:column; align-items:center; gap:8px;}
+  .btn-caption{font-family:var(--font-body); font-style:italic; font-size:13px; color:var(--navy); opacity:.6;}
   .btn-block{width:100%; justify-content:center;}
 
   /* NAV */
@@ -277,14 +279,20 @@
         <span class="tag tag-coral">Libertad</span>
       </div>
       <div class="btn-row">
-        <a class="btn btn-outline-dark" id="amazon-btn" target="_blank" rel="noopener noreferrer">
-          <svg class="icon" aria-hidden="true"><use href="#icon-external"></use></svg>
-          Comprar en Amazon
-        </a>
-        <a class="btn btn-outline-dark" id="mercadolibre-btn" target="_blank" rel="noopener noreferrer">
-          <svg class="icon" aria-hidden="true"><use href="#icon-external"></use></svg>
-          Comprar en Mercado Libre
-        </a>
+        <div class="btn-col">
+          <a class="btn btn-outline-dark" id="mercadolibre-btn" target="_blank" rel="noopener noreferrer">
+            <svg class="icon" aria-hidden="true"><use href="#icon-external"></use></svg>
+            Comprar en Mercado Libre
+          </a>
+          <span class="btn-caption">(compra de libro físico)</span>
+        </div>
+        <div class="btn-col">
+          <a class="btn btn-outline-dark" id="amazon-btn" target="_blank" rel="noopener noreferrer">
+            <svg class="icon" aria-hidden="true"><use href="#icon-external"></use></svg>
+            Comprar en Amazon
+          </a>
+          <span class="btn-caption">(compra virtual)</span>
+        </div>
       </div>
     </div>
   </div>
@@ -451,9 +459,9 @@
         <div class="sobre-mi-text">
           <span class="kicker">Sobre mí</span>
           <h2 class="section-title section-title--narrow">Matías Mermoud</h2>
-          <p>Matías Mermoud es acupuntor, escritor y emprendedor argentino. Su recorrido nace de una formación autodidacta y de años de estudio y experiencia en espiritualidad, desarrollo personal, educación financiera y Acupuntura Bioenergética.</p>
-          <p>A lo largo de su camino se formó y trabajó en Argentina, Brasil, España, Turquía y China, integrando distintas perspectivas sobre el conocimiento interior, la salud, la conciencia y la relación de las personas con el dinero.</p>
-          <p>Es autor de <em>Entre la espiritualidad y la educación financiera</em>, una obra que propone unir dos mundos que habitualmente se presentan por separado: el desarrollo interior y la educación financiera.</p>
+          <p>Matías Mermoud es acupuntor, escritor y emprendedor Argentino. Se formó en Acupuntura Bioenergética, desarrollando posteriormente su experiencia profesional a través de la formación y el trabajo en Argentina, Brasil, España, Turquía y China.</p>
+          <p>En paralelo a su formación en acupuntura, desarrolló de manera autodidacta un recorrido de estudio en espiritualidad, desarrollo personal y educación financiera, acompañado por la lectura de distintos autores y corrientes de pensamiento. Esta búsqueda fue integrándose con su experiencia en Acupuntura Bioenergética, el mundo empresarial y su propia experiencia de vida.</p>
+          <p>Es autor de <em>Entre la espiritualidad y la educación financiera</em>, una obra que propone unir dos mundos que habitualmente se presentan por separado: el desarrollo interior y el manejo consciente de los recursos materiales.</p>
           <p>Su propósito es compartir información, experiencias y herramientas que permitan ampliar la manera de comprender la vida, los recursos y las posibilidades de cada persona.</p>
         </div>
       </div>
@@ -534,8 +542,8 @@
       sacar el atributo disabled del boton #contact-submit mas abajo.
    ============================================================ */
 const INSTAGRAM_USER = "entrelaespiritualidad";
-const AMAZON_URL = "https://www.amazon.com/tu-libro"; // <-- CAMBIAR por el link real de Amazon
-const MERCADOLIBRE_URL = "https://articulo.mercadolibre.com.ar/tu-libro"; // <-- CAMBIAR por el link real de Mercado Libre
+const AMAZON_URL = "https://www.amazon.com/dp/B0GV372G41";
+const MERCADOLIBRE_URL = "https://www.mercadolibre.com.ar/libro-entre-la-espiritualidad-y-la-educacion-financiera/up/MLAU4859018552";
 
 /* ============================================================ */
 
