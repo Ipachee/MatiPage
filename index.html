@@ -470,14 +470,9 @@
       <h2 class="section-title section-title--narrow">Escribime</h2>
       <p class="lede" style="color:var(--navy);">Dejá tu consulta con tus datos y te respondo por mail.</p>
 
-      <!-- FORMULARIO DE CONTACTO (Web3Forms): pendiente de activar.
-           1) Crear cuenta gratis en https://web3forms.com con el mail donde
-              Matías quiere recibir las consultas.
-           2) Pegar el "Access Key" que te dan en el value de access_key abajo.
-           3) Sacar el atributo disabled del botón #contact-submit y borrar
-              el aviso .is-pending (o cambiar el texto del <p id="contact-status">). -->
+      <!-- FORMULARIO DE CONTACTO (Web3Forms): activo, las consultas llegan al mail de Matías. -->
       <form id="contact-form" class="contacto-form">
-        <input type="hidden" name="access_key" value="ACCESS_KEY_PENDIENTE_WEB3FORMS">
+        <input type="hidden" name="access_key" value="74ff1c5a-2149-4475-beda-417936d80436">
         <input type="hidden" name="subject" value="Nueva consulta desde la web">
         <div class="form-row">
           <div>
@@ -493,11 +488,11 @@
         <input type="email" id="c-email" name="email" required>
         <label for="c-mensaje">Tu consulta</label>
         <textarea id="c-mensaje" name="mensaje" required></textarea>
-        <button type="submit" class="btn btn-coral btn-block" id="contact-submit" disabled aria-disabled="true">
+        <button type="submit" class="btn btn-coral btn-block" id="contact-submit">
           <svg class="icon" aria-hidden="true"><use href="#icon-mail"></use></svg>
           Enviar consulta
         </button>
-        <p class="contacto-note is-pending" id="contact-status">Formulario en configuración — todavía no envía. Ya lo activamos.</p>
+        <p class="contacto-note" id="contact-status" role="status"></p>
       </form>
     </div>
   </div>
@@ -536,10 +531,8 @@
    ============================================================
    1) INSTAGRAM_USER: usuario de Instagram sin @.
    2) AMAZON_URL / MERCADOLIBRE_URL: links de venta del libro en cada tienda.
-   3) El formulario de contacto usa Web3Forms: el access_key real va como
-      value del input hidden "access_key" en el <form id="contact-form">
-      del HTML (buscar ACCESS_KEY_PENDIENTE_WEB3FORMS). Una vez cargado,
-      sacar el atributo disabled del boton #contact-submit mas abajo.
+   3) El formulario de contacto usa Web3Forms: el access_key va como
+      value del input hidden "access_key" en el <form id="contact-form">.
    ============================================================ */
 const INSTAGRAM_USER = "entrelaespiritualidad";
 const AMAZON_URL = "https://www.amazon.com/dp/B0GV372G41";
