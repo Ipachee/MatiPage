@@ -137,6 +137,12 @@
   .libro-text .btn-row{margin-top:30px;}
   .btn-pill{border-radius:999px;}
 
+  /* FIRMA bajo el formulario */
+  .firma{margin:56px auto 0; padding-top:40px; border-top:1px solid rgba(27,41,52,.18); max-width:560px; text-align:center;}
+  .firma blockquote p{font-family:var(--font-body); font-style:italic; font-size:19px; line-height:1.7; color:var(--navy);}
+  .firma-nombre{font-family:var(--font-body); font-style:italic; font-size:19px; color:var(--navy); margin-top:18px;}
+  .firma-img{display:block; height:84px; width:auto; margin:10px auto 0;}
+
   /* FRAGMENTO DEL LIBRO (modal con carrusel de paginas) */
   .sample-modal{position:fixed; inset:0; z-index:1000; display:flex; align-items:center; justify-content:center; padding:16px;}
   .sample-backdrop{position:absolute; inset:0; background:rgba(21,32,41,.9);}
@@ -308,22 +314,22 @@
       <div class="clase-card">
         <h3>Introducción a la forma de pensamiento</h3>
         <p>Clase grabada que sienta las bases: cómo funciona tu forma de pensar, qué creencias heredaste sin darte cuenta y por qué separar espiritualidad de educación financiera te frena. El punto de partida antes de las demás clases.</p>
-        <a class="btn btn-outline-light btn-block clase-contact-btn" data-clase="Introducción a la forma de pensamiento" href="#contacto">Quiero comprar esta clase</a>
+        <span class="btn btn-outline-light btn-block" aria-disabled="true">Próximamente</span>
       </div>
       <div class="clase-card">
         <h3>Espiritualidad Aplicada</h3>
         <p>Clase grabada con herramientas para conectar con tu propósito, tu brújula interior y sostener la calma en medio de la acción.</p>
-        <a class="btn btn-outline-light btn-block clase-contact-btn" data-clase="Espiritualidad Aplicada" href="#contacto">Quiero comprar esta clase</a>
+        <span class="btn btn-outline-light btn-block" aria-disabled="true">Próximamente</span>
       </div>
       <div class="clase-card">
         <h3>Educación Financiera Consciente</h3>
         <p>Clase grabada con los fundamentos para ordenar tus finanzas, ahorrar e invertir con criterio propio, sin perder tus valores en el camino.</p>
-        <a class="btn btn-outline-light btn-block clase-contact-btn" data-clase="Educación Financiera Consciente" href="#contacto">Quiero comprar esta clase</a>
+        <span class="btn btn-outline-light btn-block" aria-disabled="true">Próximamente</span>
       </div>
       <div class="clase-card">
         <h3>La unión de dos mundos</h3>
         <p>Clase grabada que integra todo lo anterior: cómo aplicar la espiritualidad y la educación financiera juntas, en las decisiones reales del día a día, sin que una le gane a la otra.</p>
-        <a class="btn btn-outline-light btn-block clase-contact-btn" data-clase="La unión de dos mundos" href="#contacto">Quiero comprar esta clase</a>
+        <span class="btn btn-outline-light btn-block" aria-disabled="true">Próximamente</span>
       </div>
     </div>
   </div>
@@ -406,6 +412,12 @@
         </button>
         <p class="contacto-note" id="contact-status" role="status"></p>
       </form>
+
+      <figure class="firma">
+        <blockquote><p>“Espero que este espacio abra puertas nuevas a posibilidades y despierte en vos la curiosidad de seguir aprendiendo”</p></blockquote>
+        <p class="firma-nombre">Matías</p>
+        <img class="firma-img" src="img/firma.png" alt="Firma de Matías Mermoud" width="87" height="84" loading="lazy">
+      </figure>
     </div>
   </div>
 </section>
@@ -476,16 +488,6 @@ ready(function(){
   document.getElementById('mercadolibre-btn').href = MERCADOLIBRE_URL;
   document.getElementById('nav-ig-btn').href = "https://instagram.com/" + INSTAGRAM_USER;
   document.getElementById('footer-ig-btn').href = "https://instagram.com/" + INSTAGRAM_USER;
-
-  /* Clases: al hacer click en "quiero comprar", precarga el mensaje en el
-     formulario de contacto (el link ya scrollea a #contacto solo) */
-  document.querySelectorAll('.clase-contact-btn').forEach(function(btn){
-    btn.addEventListener('click', function(){
-      const clase = btn.getAttribute('data-clase');
-      const mensaje = document.getElementById('c-mensaje');
-      if(mensaje){ mensaje.value = 'Quiero comprar la clase de "' + clase + '".'; }
-    });
-  });
 
   /* Formulario de contacto (Web3Forms) */
   const contactForm = document.getElementById('contact-form');
@@ -568,7 +570,7 @@ ready(function(){
   /* Aparicion suave al hacer scroll */
   (function(){
     const targets = Array.prototype.slice.call(document.querySelectorAll(
-      '.book-cover-wrap, .libro-text, #clases .section-title, .clase-card, #podcast .section-title, .podcast-card, .sobre-mi-photo, .sobre-mi-text, .contacto-form'
+      '.book-cover-wrap, .libro-text, #clases .section-title, .clase-card, #podcast .section-title, .podcast-card, .sobre-mi-photo, .sobre-mi-text, .contacto-form, .firma'
     ));
     if(!('IntersectionObserver' in window)){ targets.forEach(function(t){ t.classList.add('in'); }); return; }
     targets.forEach(function(t){
