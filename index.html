@@ -55,6 +55,7 @@
   .center{text-align:center;}
   .lede{font-family:var(--font-body); font-style:italic; font-size:19px; line-height:1.7; opacity:.85; max-width:560px;}
   .sobre-mi-text p{font-family:var(--font-body); font-size:16px; line-height:1.7; color:var(--navy); opacity:.85; margin-bottom:14px; max-width:560px;}
+  .sobre-mi-text .section-title{margin-bottom:24px;}
   .sobre-mi-text p:last-child{margin-bottom:0;}
   .sobre-mi-text em{font-style:italic;}
   .btn{
@@ -94,9 +95,11 @@
   .burger span{width:24px; height:2px; background:var(--off);}
 
   /* HERO */
-  #inicio{position:relative; min-height:100vh; display:flex; align-items:center; background:var(--navy) url(img/hero-patagonia.webp) 58% 40%/cover no-repeat; color:var(--off); overflow:hidden; padding-top:76px;}
+  #inicio{position:relative; min-height:100vh; display:flex; align-items:flex-end; background:var(--navy) url(img/hero-patagonia.webp) 50% 38%/cover no-repeat; color:var(--off); overflow:hidden; padding-top:76px;}
   #inicio::before{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(27,41,52,.66) 0%, rgba(27,41,52,.44) 45%, rgba(27,41,52,.88) 100%);}
-  .hero-inner{position:relative; z-index:2; padding:60px 0;}
+  .hero-inner{position:relative; z-index:2; padding:60px 24px clamp(120px,19vh,200px); text-align:center;}
+  .hero-title.hero-title--frase{font-size:clamp(20px,2.8vw,36px); line-height:1.25; letter-spacing:1.5px; max-width:980px; margin:0 auto;}
+  .hero-title.hero-title--frase .w{animation-delay:calc(.2s + var(--i) * .07s);}
   .hero-title{font-size:clamp(40px, 7vw, 84px); margin-bottom:24px; text-shadow:0 2px 28px rgba(21,32,41,.5);}
   .hero-title .line1{color:var(--off); display:block;}
   .hero-title .line2{color:var(--coral); display:block;}
@@ -129,21 +132,36 @@
   }
 
   /* LIBRO */
-  .libro-grid{display:grid; grid-template-columns:.85fr 1.15fr; gap:70px; align-items:center;}
-  .book-cover-wrap{position:relative;}
-  .book-cover-wrap img{width:100%; max-width:460px; height:auto; border-radius:14px; box-shadow:0 30px 60px -30px rgba(27,41,52,.5);}
+  /* Secciones con foto de fondo: la misma foto desenfocada llena toda la seccion y la nitida queda al costado */
+  .section--scene{position:relative; overflow:hidden; isolation:isolate; color:var(--off);}
+  .section--scene::after{content:""; position:absolute; inset:0; background:var(--tint); pointer-events:none;}
+  .scene-bg{position:absolute; top:-40px; left:-40px; width:calc(100% + 80px); height:calc(100% + 80px); max-width:none; object-fit:cover; filter:blur(24px) saturate(1.15); z-index:-1;}
+  .section--scene > .container{position:relative; z-index:2;}
+  .scene-subject{position:absolute; z-index:1; top:22px; width:min(34vw,450px); height:300px; object-fit:cover; -webkit-mask-image:radial-gradient(ellipse 60% 60% at 50% 50%, #000 66%, transparent 100%); mask-image:radial-gradient(ellipse 60% 60% at 50% 50%, #000 66%, transparent 100%);}
+  .scene-clases .scene-subject{object-position:80% 80%;}
+  .scene-podcast .scene-subject{object-position:30% 60%;}
+  .scene-subject--right{right:3%;}
+  .scene-subject--left{left:3%;}
+  .scene-clases{--tint:linear-gradient(90deg, rgba(41,124,150,.93) 0%, rgba(41,124,150,.78) 100%);}
+  .scene-podcast{--tint:linear-gradient(90deg, rgba(21,32,41,.55) 0%, rgba(21,32,41,.86) 100%);}
+  .scene-clases .facet-text{max-width:min(600px,54%);}
+  .scene-podcast .facet-text{margin-left:auto; width:min(580px,54%);}
+  .libro-section{--tint:linear-gradient(90deg, rgba(21,32,41,.3) 0%, rgba(21,32,41,.78) 48%, rgba(21,32,41,.9) 100%);}
+  .libro-grid{display:block;}
+  .libro-scene{position:absolute; z-index:1; left:0; top:0; bottom:0; width:44%; display:flex; align-items:flex-end;}
+  .libro-scene-img{display:block; width:100%; height:auto; -webkit-mask-image:linear-gradient(90deg,#000 55%,transparent 100%), linear-gradient(180deg,transparent 0%,#000 22%); -webkit-mask-composite:source-in; mask-image:linear-gradient(90deg,#000 55%,transparent 100%), linear-gradient(180deg,transparent 0%,#000 22%); mask-composite:intersect;}
+  .libro-scene-cta .btn{background:rgba(21,32,41,.45); -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px);}
+  .libro-scene-cta .btn:hover{background:var(--off);}
+  .libro-scene-cta{position:absolute; left:0; right:0; bottom:46px; display:flex; justify-content:center;}
+  .libro-text{margin-left:auto; width:min(580px,52%);}
+  .libro-section .kicker{color:var(--coral);}
+  .libro-section .btn-caption{color:var(--off); opacity:.7;}
   .libro-text p{margin-bottom:18px; line-height:1.75; font-size:16.5px;}
 
 
-  .book-cover-wrap{display:flex; flex-direction:column; align-items:center; gap:30px;}
   .libro-text .btn-row{margin-top:30px;}
   .btn-pill{border-radius:999px;}
 
-  /* FIRMA bajo el formulario */
-  .firma{margin:56px auto 0; padding-top:40px; border-top:1px solid rgba(27,41,52,.18); max-width:560px; text-align:center;}
-  .firma blockquote p{font-family:var(--font-body); font-style:italic; font-size:19px; line-height:1.7; color:var(--navy);}
-  .firma-nombre{font-family:var(--font-body); font-style:italic; font-size:19px; color:var(--navy); margin-top:18px;}
-  .firma-img{display:block; height:84px; width:auto; margin:10px auto 0;}
 
   /* FRAGMENTO DEL LIBRO (modal con carrusel de paginas) */
   .sample-modal{position:fixed; inset:0; z-index:1000; display:flex; align-items:center; justify-content:center; padding:16px;}
@@ -184,11 +202,10 @@
   /* CABECERA DE CLASES / PODCAST con imagen pequena */
   .facet-head{display:flex; align-items:center; justify-content:space-between; gap:48px;}
   .facet-head--left{justify-content:flex-start;}
-  .facet-img{flex-shrink:0; width:176px; height:auto; border-radius:18px; box-shadow:0 24px 40px -22px rgba(0,0,0,.5);}
 
   /* TRABAJEMOS JUNTOS */
   .trabajo{position:relative; overflow:hidden; background:var(--navy); color:var(--off); padding:120px 0;}
-  .trabajo-bg{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:62% 62%;}
+  .trabajo-bg{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 24%;}
   .trabajo::before{content:""; position:absolute; inset:0; z-index:1; background:linear-gradient(90deg, rgba(27,41,52,.88) 0%, rgba(27,41,52,.62) 55%, rgba(27,41,52,.36) 100%);}
   .trabajo-inner{position:relative; z-index:2;}
   .trabajo .kicker{color:var(--sand);}
@@ -223,14 +240,7 @@
   .contacto-panel{background:var(--sand); border-radius:20px; padding:56px; box-shadow:0 40px 80px -46px rgba(27,41,52,.35);}
   .sobre-mi{display:grid; grid-template-columns:.36fr 1fr; gap:44px; align-items:center; margin-bottom:56px; padding-bottom:56px; border-bottom:1px solid rgba(27,41,52,.14);}
   .sobre-mi-photo{aspect-ratio:1; width:100%; max-width:260px; margin:0 auto; border-radius:50%; background:rgba(27,41,52,.06) center/cover no-repeat; box-shadow:0 20px 40px -20px rgba(27,41,52,.4);}
-  .contacto-form{background:var(--navy-2); border-radius:8px; padding:34px; color:var(--off); margin-top:40px;}
-  .contacto-form label{font-family:var(--font-display); font-size:12px; letter-spacing:1.5px; text-transform:uppercase; color:var(--sand); display:block; margin-bottom:8px;}
-  .contacto-form input, .contacto-form textarea{width:100%; padding:14px 16px; border-radius:4px; border:1px solid #34495a; background:#0f1922; color:var(--off); font-family:var(--font-body); font-size:15px; margin-bottom:22px;}
-  .contacto-form textarea{resize:vertical; min-height:120px;}
-  .contacto-form input:focus, .contacto-form textarea:focus{outline:2px solid var(--coral);}
-  .form-row{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
-  .contacto-note{font-size:13px; opacity:.75; margin-top:6px; line-height:1.6;}
-  .contacto-note.is-pending{color:var(--coral); opacity:1; font-family:var(--font-display); font-size:12px; letter-spacing:.5px; text-transform:uppercase;}
+  .contacto-panel .sobre-mi{margin-bottom:0; padding-bottom:0; border-bottom:none;}
 
   /* FOOTER */
   footer{background:var(--navy-2); color:var(--off); padding:60px 0 30px;}
@@ -245,15 +255,18 @@
   @media(max-width:900px){
     .nav-links{display:none;}
     .burger{display:flex;}
-    .libro-grid{grid-template-columns:1fr; gap:44px;}
+    .libro-section{padding-top:0; --tint:linear-gradient(180deg, rgba(21,32,41,.15) 0%, rgba(21,32,41,.8) 40%, rgba(21,32,41,.9) 100%);}
+    .libro-scene{position:relative; width:100%; height:440px; margin-bottom:40px;}
+    .libro-scene-img{width:100%; height:100%; object-fit:cover; object-position:50% 58%; -webkit-mask-image:linear-gradient(180deg,#000 62%,transparent 100%); mask-image:linear-gradient(180deg,#000 62%,transparent 100%); -webkit-mask-composite:source-over; mask-composite:add;}
+    .libro-text{margin-left:0; width:100%;}
+    .scene-subject{position:relative; top:auto; right:auto; left:auto; display:block; margin:0 auto 26px; width:min(78vw,340px); height:270px;}
+    .scene-clases .facet-text, .scene-podcast .facet-text{max-width:none; width:100%; margin-left:0;}
     .sobre-mi{grid-template-columns:1fr; gap:24px; text-align:center; margin-bottom:36px; padding-bottom:36px;}
     .sobre-mi-photo{width:140px; margin:0 auto;}
     .clases-grid, .podcast-grid{grid-template-columns:1fr;}
     .facet-head{flex-direction:column; align-items:flex-start; gap:24px;}
-    .facet-img{width:140px;}
     .trabajo{padding:80px 0;}
     .trabajo-areas{grid-template-columns:1fr;}
-    .form-row{grid-template-columns:1fr;}
     .section{padding:70px 0;}
     #nav.open .nav-links{display:flex; position:fixed; inset:76px 0 0 0; background:var(--navy); flex-direction:column; align-items:flex-start; padding:34px 24px; gap:26px; overflow-y:auto;}
   }
@@ -289,11 +302,11 @@
       <li><a href="#clases">Clases</a></li>
       <li><a href="#podcast">Podcast</a></li>
       <li><a href="#trabajemos">Trabajemos juntos</a></li>
-      <li><a href="#contacto">Contacto</a></li>
+      <li><a href="#sobre-mi">Sobre mí</a></li>
     </ul>
     <div class="nav-cta">
       <a class="btn-icon" id="nav-ig-btn" target="_blank" rel="noopener" aria-label="Instagram"><svg class="icon" aria-hidden="true"><use href="#icon-instagram"></use></svg></a>
-      <a class="btn btn-coral" href="#contacto"><svg class="icon" aria-hidden="true"><use href="#icon-mail"></use></svg><span class="btn-label">Contacto</span></a>
+      <a class="btn btn-coral" href="#trabajemos"><svg class="icon" aria-hidden="true"><use href="#icon-mail"></use></svg><span class="btn-label">Contacto</span></a>
     </div>
     <button class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-links-list"><span></span><span></span><span></span></button>
   </div>
@@ -301,9 +314,9 @@
 
 <section id="inicio">
   <div class="container hero-inner">
-    <h1 class="hero-title">
-      <span class="line1"><span class="w" style="--i:0">Bienvenido</span> <span class="w" style="--i:1">al</span> <span class="w" style="--i:2">universo</span> <span class="w" style="--i:3">de</span></span>
-      <span class="line2"><span class="w" style="--i:4">Manifiesta</span> <span class="w" style="--i:5">tu</span> <span class="w" style="--i:6">abundancia</span></span>
+    <h1 class="hero-title hero-title--frase">
+      <span class="line1"><span class="w" style="--i:0">Espero</span> <span class="w" style="--i:1">que</span> <span class="w" style="--i:2">este</span> <span class="w" style="--i:3">espacio</span> <span class="w" style="--i:4">abra</span> <span class="w" style="--i:5">puertas</span> <span class="w" style="--i:6">a</span> <span class="w" style="--i:7">nuevas</span> <span class="w" style="--i:8">posibilidades</span> <span class="w" style="--i:9">y</span> <span class="w" style="--i:10">despierte</span> <span class="w" style="--i:11">en</span> <span class="w" style="--i:12">ti</span> <span class="w" style="--i:13">la</span> <span class="w" style="--i:14">curiosidad</span> <span class="w" style="--i:15">de</span> <span class="w" style="--i:16">seguir</span> <span class="w" style="--i:17">aprendiendo</span> <span class="w" style="--i:18">para</span></span>
+      <span class="line2"><span class="w" style="--i:19">manifestar</span> <span class="w" style="--i:20">tu</span> <span class="w" style="--i:21">abundancia</span> <span class="w" style="--i:22">interior.</span></span>
     </h1>
   </div>
   <a href="#libro" class="scroll-cue" aria-label="Bajar al libro"><span>Descubrí</span><i></i></a>
@@ -315,12 +328,13 @@
   </svg>
 </div>
 
-<section id="libro" class="section section--off">
+<section id="libro" class="section section--scene libro-section">
+  <img class="scene-bg" src="img/libro-mesa.webp" alt="" aria-hidden="true" decoding="async">
+  <div class="libro-scene">
+    <img class="libro-scene-img" src="img/libro-mesa.webp" alt="Libro Entre la espiritualidad y la educación financiera, de Matías Mermoud, sobre una mesa de madera" width="900" height="1125" decoding="async">
+    <div class="libro-scene-cta"><button type="button" class="btn btn-outline-light btn-pill" id="sample-open">Leer fragmento</button></div>
+  </div>
   <div class="container libro-grid">
-    <div class="book-cover-wrap">
-      <img src="img/libro-mesa.webp" alt="Libro Entre la espiritualidad y la educación financiera, de Matías Mermoud, sobre una mesa de madera" width="900" height="1125" decoding="async">
-      <button type="button" class="btn btn-outline-dark btn-pill" id="sample-open">Leer fragmento</button>
-    </div>
     <div class="libro-text">
       <span class="kicker">El libro</span>
       <h2 class="section-title section-title--mb">Un camino. Dos mundos que se unen.</h2>
@@ -328,14 +342,14 @@
       <p>Desde reflexiones profundas hasta estrategias prácticas, este libro te invita a tomar el control de tu vida, cultivar la abundancia desde dentro y construir un camino hacia la libertad financiera sin perder de vista lo que realmente importa: la conexión contigo mismo y con los demás. Si alguna vez te has preguntado cómo alinear tus valores internos con tus metas materiales, esta obra será tu compañera ideal en ese viaje de autodescubrimiento y prosperidad.</p>
       <div class="btn-row">
         <div class="btn-col">
-          <a class="btn btn-outline-dark" id="mercadolibre-btn" target="_blank" rel="noopener noreferrer">
+          <a class="btn btn-outline-light" id="mercadolibre-btn" target="_blank" rel="noopener noreferrer">
             <svg class="icon" aria-hidden="true"><use href="#icon-external"></use></svg>
             Comprar en Mercado Libre
           </a>
           <span class="btn-caption">(compra de libro físico)</span>
         </div>
         <div class="btn-col">
-          <a class="btn btn-outline-dark" id="amazon-btn" target="_blank" rel="noopener noreferrer">
+          <a class="btn btn-outline-light" id="amazon-btn" target="_blank" rel="noopener noreferrer">
             <svg class="icon" aria-hidden="true"><use href="#icon-external"></use></svg>
             Comprar en Amazon
           </a>
@@ -347,7 +361,9 @@
 
 </section>
 
-<section id="clases" class="section section--teal">
+<section id="clases" class="section section--teal section--scene scene-clases">
+  <img class="scene-bg" src="img/clases.webp" alt="" aria-hidden="true" decoding="async">
+  <img class="scene-subject scene-subject--right" src="img/clases.webp" alt="Computadora portátil y cuaderno sobre un escritorio de estudio" width="192" height="196" loading="lazy" decoding="async">
   <div class="container">
     <div class="facet-head">
       <div class="facet-text">
@@ -355,7 +371,6 @@
         <h2 class="section-title section-title--narrow">Aprendé a tu ritmo con las clases grabadas</h2>
         <p class="lede" style="margin-top:18px;">Clases en video para ver cuando quieras, las veces que quieras.</p>
       </div>
-      <img class="facet-img" src="img/clases.webp" alt="Computadora portátil y cuaderno sobre un escritorio de estudio" width="192" height="196" loading="lazy" decoding="async">
     </div>
     <div class="clases-grid">
       <div class="clase-card">
@@ -382,10 +397,11 @@
   </div>
 </section>
 
-<section id="podcast" class="section section--navy">
+<section id="podcast" class="section section--navy section--scene scene-podcast">
+  <img class="scene-bg" src="img/podcast.webp" alt="" aria-hidden="true" decoding="async">
+  <img class="scene-subject scene-subject--left" src="img/podcast.webp" alt="Micrófono y auriculares sobre un escritorio con luz cálida" width="192" height="193" loading="lazy" decoding="async">
   <div class="container">
     <div class="facet-head facet-head--left">
-      <img class="facet-img" src="img/podcast.webp" alt="Micrófono y auriculares sobre un escritorio con luz cálida" width="192" height="193" loading="lazy" decoding="async">
       <div class="facet-text">
         <span class="kicker">Podcast</span>
         <h2 class="section-title section-title--narrow">Escuchá los episodios</h2>
@@ -419,7 +435,7 @@
 </section>
 
 <section id="trabajemos" class="trabajo">
-  <img class="trabajo-bg" src="img/trabajemos-fitzroy.webp" alt="" width="1230" height="804" loading="lazy" decoding="async">
+  <img class="trabajo-bg" src="img/trabajemos-fitzroy.webp" alt="" width="2000" height="1500" loading="lazy" decoding="async">
   <div class="container trabajo-inner">
     <div class="trabajo-head">
       <span class="kicker">Acompañamiento y desarrollo de proyectos</span>
@@ -435,7 +451,7 @@
   </div>
 </section>
 
-<section id="contacto" class="section section--off contacto-section">
+<section id="sobre-mi" class="section section--off contacto-section">
   <div class="container">
     <div class="contacto-panel">
 
@@ -453,40 +469,6 @@
         </div>
       </div>
 
-      <span class="kicker">Contacto</span>
-      <h2 class="section-title section-title--narrow">Escribime</h2>
-      <p class="lede" style="color:var(--navy);">Dejá tu consulta con tus datos y te respondo por mail.</p>
-
-      <!-- FORMULARIO DE CONTACTO (Web3Forms): activo, las consultas llegan al mail de Matías. -->
-      <form id="contact-form" class="contacto-form">
-        <input type="hidden" name="access_key" value="74ff1c5a-2149-4475-beda-417936d80436">
-        <input type="hidden" name="subject" value="Nueva consulta desde la web">
-        <div class="form-row">
-          <div>
-            <label for="c-nombre">Nombre</label>
-            <input type="text" id="c-nombre" name="nombre" required>
-          </div>
-          <div>
-            <label for="c-apellido">Apellido</label>
-            <input type="text" id="c-apellido" name="apellido" required>
-          </div>
-        </div>
-        <label for="c-email">Mail</label>
-        <input type="email" id="c-email" name="email" required>
-        <label for="c-mensaje">Tu consulta</label>
-        <textarea id="c-mensaje" name="mensaje" required></textarea>
-        <button type="submit" class="btn btn-coral btn-block" id="contact-submit">
-          <svg class="icon" aria-hidden="true"><use href="#icon-mail"></use></svg>
-          Enviar consulta
-        </button>
-        <p class="contacto-note" id="contact-status" role="status"></p>
-      </form>
-
-      <figure class="firma">
-        <blockquote><p>“Espero que este espacio abra puertas nuevas a posibilidades y despierte en vos la curiosidad de seguir aprendiendo”</p></blockquote>
-        <p class="firma-nombre">Matías</p>
-        <img class="firma-img" src="img/firma.png" alt="Firma de Matías Mermoud" width="87" height="84" loading="lazy">
-      </figure>
     </div>
   </div>
 </section>
@@ -505,7 +487,7 @@
         <li><a href="#clases">Clases</a></li>
         <li><a href="#podcast">Podcast</a></li>
         <li><a href="#trabajemos">Trabajemos juntos</a></li>
-        <li><a href="#contacto">Contacto</a></li>
+        <li><a href="#sobre-mi">Sobre mí</a></li>
       </ul>
     </div>
     <div class="footer-bottom">
@@ -631,11 +613,12 @@
    ============================================================
    1) INSTAGRAM_USER: usuario de Instagram sin @.
    2) AMAZON_URL / MERCADOLIBRE_URL: links de venta del libro en cada tienda.
-   3) El formulario de contacto usa Web3Forms: el access_key va como
-      value del input hidden "access_key" en el <form id="contact-form">.
+   3) WEB3FORMS_KEY: clave de Web3Forms con la que los 4 modales de
+       "Trabajemos juntos" mandan el mail a Matías.
    ============================================================ */
 const INSTAGRAM_USER = "entrelaespiritualidad";
 const AMAZON_URL = "https://www.amazon.com/dp/B0GV372G41";
+const WEB3FORMS_KEY = "74ff1c5a-2149-4475-beda-417936d80436";
 const MERCADOLIBRE_URL = "https://www.mercadolibre.com.ar/libro-entre-la-espiritualidad-y-la-educacion-financiera/up/MLAU4859018552";
 
 /* ============================================================ */
@@ -651,32 +634,6 @@ ready(function(){
   document.getElementById('mercadolibre-btn').href = MERCADOLIBRE_URL;
   document.getElementById('nav-ig-btn').href = "https://instagram.com/" + INSTAGRAM_USER;
   document.getElementById('footer-ig-btn').href = "https://instagram.com/" + INSTAGRAM_USER;
-
-  /* Formulario de contacto (Web3Forms) */
-  const contactForm = document.getElementById('contact-form');
-  const contactStatus = document.getElementById('contact-status');
-  contactForm.addEventListener('submit', function(e){
-    e.preventDefault();
-    contactStatus.classList.remove('is-pending');
-    contactStatus.textContent = 'Enviando...';
-    fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify(Object.fromEntries(new FormData(contactForm)))
-    })
-      .then(function(r){ return r.json(); })
-      .then(function(data){
-        if(data.success){
-          contactStatus.textContent = '¡Listo! Te respondo a la brevedad.';
-          contactForm.reset();
-        } else {
-          contactStatus.textContent = 'Hubo un problema al enviar. Probá de nuevo en un rato.';
-        }
-      })
-      .catch(function(){
-        contactStatus.textContent = 'Hubo un problema al enviar. Probá de nuevo en un rato.';
-      });
-  });
 
   /* Fragmento del libro: modal con paginas */
   const SAMPLE_PAGES = [1,2,3,4,5,6,7,8,9].map(function(n){ return 'muestra/pagina-' + (n < 10 ? '0' : '') + n + '.jpg'; });
@@ -733,7 +690,7 @@ ready(function(){
   /* Modales de contacto (Trabajemos juntos) */
   (function(){
     const modals = Array.prototype.slice.call(document.querySelectorAll('.cmodal'));
-    const accessKey = document.querySelector('#contact-form [name="access_key"]').value;
+    const accessKey = WEB3FORMS_KEY;
     let lastTrigger = null;
 
     function openModal(id, trigger){
@@ -805,7 +762,7 @@ ready(function(){
   /* Aparicion suave al hacer scroll */
   (function(){
     const targets = Array.prototype.slice.call(document.querySelectorAll(
-      '.book-cover-wrap, .libro-text, #clases .section-title, .clase-card, #podcast .section-title, .podcast-card, .facet-img, .trabajo-head, .trabajo-area, .trabajo-cta, .sobre-mi-photo, .sobre-mi-text, .contacto-form, .firma'
+      '.libro-scene-cta, .libro-text, #clases .section-title, .clase-card, #podcast .section-title, .podcast-card, .trabajo-head, .trabajo-area, .trabajo-cta, .sobre-mi-photo, .sobre-mi-text'
     ));
     if(!('IntersectionObserver' in window)){ targets.forEach(function(t){ t.classList.add('in'); }); return; }
     targets.forEach(function(t){
